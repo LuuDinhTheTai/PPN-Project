@@ -11,14 +11,12 @@ import lombok.Setter;
 public class AccountResponse {
   
   private String id;
-  private String email;
   private String username;
   private String password;
   
   public static AccountResponse from(Account account) {
     return new AccountResponse(
             account.getId(),
-            account.getEmail(),
             account.getUsername(),
             account.getPassword()
     );

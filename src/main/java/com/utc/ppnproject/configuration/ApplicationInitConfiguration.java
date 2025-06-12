@@ -54,7 +54,6 @@ public class ApplicationInitConfiguration {
         roles.add(roleRepository.findByName(Constant.ROLE_ADMIN));
         
         Account account = Account.builder()
-                                  .email("null")
                                   .username(ADMIN_USERNAME)
                                   .password(passwordEncoder.encode(ADMIN_PASSWORD))
                                   .roles(roles)

@@ -35,14 +35,10 @@ public class AccountServiceImpl extends BaseServiceImpl<Account, String> impleme
   public AccountResponse register(RegisterRequest request) {
     Account account = new Account();
     
-    if (repository.existsByEmail(request.getEmail())) {
-      throw new ApiException(ErrorCode.EMAIL_ALREADY_EXISTS);
-    }
     if (repository.existsByUsername(request.getUsername())) {
       throw new ApiException(ErrorCode.USERNAME_ALREADY_EXISTS);
     }
     
-    account.setEmail(request.getEmail());
     account.setUsername(request.getUsername());
     account.setPassword(passwordEncoder.encode(request.getPassword()));
     
