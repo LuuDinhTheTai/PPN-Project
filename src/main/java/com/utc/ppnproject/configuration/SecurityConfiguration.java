@@ -34,6 +34,7 @@ public class SecurityConfiguration {
   public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
             .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+                                                                    // public endpoints
                                                                     .requestMatchers(HttpMethod.GET,
                                                                             "/accounts/{id}",
                                                                             "/products/",
@@ -43,17 +44,32 @@ public class SecurityConfiguration {
                                                                             "/auth/login",
                                                                             "/auth/logout").permitAll()
                                                                     
+                                                                    // private endpoints with ADMIN or USER role
+                                                                    .requestMatchers(HttpMethod.GET,
+                                                                            "/receipts/",
+                                                                            "/receipts/s").hasAnyRole(Constant.ROLE_ADMIN, Constant.ROLE_USER)
+                                                                    .requestMatchers(HttpMethod.POST,
+                                                                            "/receipts/",
+                                                                            "/receipts/cancel").hasAnyRole(Constant.ROLE_ADMIN, Constant.ROLE_USER)
+                                                                    .requestMatchers(HttpMethod.PUT,
+                                                                            "/receipts/").hasAnyRole(Constant.ROLE_ADMIN, Constant.ROLE_USER)
+                                                                    
+                                                                    // private endpoints with ADMIN role only
                                                                     .requestMatchers(HttpMethod.GET,
                                                                             "/role-based/admin").hasRole(Constant.ROLE_ADMIN)
                                                                     .requestMatchers(HttpMethod.POST,
-                                                                            "/products/").hasRole(Constant.ROLE_ADMIN)
+                                                                            "/products/",
+                                                                            "/customers/").hasRole(Constant.ROLE_ADMIN)
                                                                     .requestMatchers(HttpMethod.PUT,
                                                                             "/products/").hasRole(Constant.ROLE_ADMIN)
                                                                     .requestMatchers(HttpMethod.DELETE,
                                                                             "/products/").hasRole(Constant.ROLE_ADMIN)
                                                                     
+                                                                    // private endpoints with USER role only
                                                                     .requestMatchers(HttpMethod.GET,
                                                                             "/role-based/user").hasRole(Constant.ROLE_USER)
+                                                                    .requestMatchers(HttpMethod.POST,
+                                                                            "/customers/").hasRole(Constant.ROLE_USER)
                                                                     
                                                                     .anyRequest().authenticated())
             
