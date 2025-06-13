@@ -3,8 +3,10 @@ package com.utc.ppnproject.configuration;
 
 import com.utc.ppnproject.constant.Constant;
 import com.utc.ppnproject.entity.Account;
+import com.utc.ppnproject.entity.Product;
 import com.utc.ppnproject.entity.Role;
 import com.utc.ppnproject.repository.AccountRepository;
+import com.utc.ppnproject.repository.ProductRepository;
 import com.utc.ppnproject.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.NonFinal;
@@ -34,9 +36,12 @@ public class ApplicationInitConfiguration {
           prefix = "spring",
           value = "datasource.driver-class-name",
           havingValue = "com.mysql.cj.jdbc.Driver")
-  ApplicationRunner applicationRunner(AccountRepository accountRepository, RoleRepository roleRepository) {
+  ApplicationRunner applicationRunner(AccountRepository accountRepository,
+                                      RoleRepository roleRepository, ProductRepository productRepository) {
     return args -> {
+      log.info("Application initializing...");
       if (!roleRepository.existsByName(Constant.ROLE_ADMIN)) {
+        log.info("(create) role: " + Constant.ROLE_ADMIN);
         roleRepository.save(Role.builder()
                                     .name(Constant.ROLE_ADMIN)
                                     .build());
@@ -44,12 +49,14 @@ public class ApplicationInitConfiguration {
       }
       
       if (!roleRepository.existsByName(Constant.ROLE_USER)) {
+        log.info("(create) role: " + Constant.ROLE_USER);
         roleRepository.save(Role.builder()
                                     .name(Constant.ROLE_USER)
                                     .build());
       }
       
       if (accountRepository.findByUsername(ADMIN_USERNAME).isEmpty()) {
+        log.info("(create) admin account");
         var roles = new HashSet<Role>();
         roles.add(roleRepository.findByName(Constant.ROLE_ADMIN));
         
@@ -60,11 +67,16 @@ public class ApplicationInitConfiguration {
                                   .build();
         
         accountRepository.save(account);
-        log.warn("admin user has been created with default password: admin, please change it");
       }
-      log.info("Application initialization completed .....");
+      
+      if (productRepository.findByName(Constant.WATER_PRODUCT).isEmpty()) {
+        log.info("(create) water product");
+        Product product = new Product();
+        product.setName(Constant.WATER_PRODUCT);
+        product.setPrice(10000);
+        product.setQty(100);
+        productRepository.save(product);
+      }
     };
   }
 }
-
-
