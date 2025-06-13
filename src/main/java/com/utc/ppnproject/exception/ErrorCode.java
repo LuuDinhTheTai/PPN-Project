@@ -18,7 +18,7 @@ public enum ErrorCode {
   INVALID_TOKEN(1004, "Invalid token", HttpStatus.UNAUTHORIZED),
   EXPIRED_TOKEN(1005, "Expired token", HttpStatus.UNAUTHORIZED),
   UNSUPPORTED_TOKEN(1006, "Unsupported token", HttpStatus.UNAUTHORIZED),
-  ;
+  PRODUCT_NOT_FOUND(404, "Product not found", HttpStatus.NOT_FOUND);
   
   private final int code;
   private final String message;

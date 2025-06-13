@@ -1,9 +1,9 @@
 package com.utc.ppnproject.controller;
 
 import com.utc.ppnproject.dto.ApiResponse;
-import com.utc.ppnproject.dto.request.AuthenticationRequest;
-import com.utc.ppnproject.dto.request.LogoutRequest;
-import com.utc.ppnproject.dto.response.AuthenticationResponse;
+import com.utc.ppnproject.dto.request.auth.AuthenticationRequest;
+import com.utc.ppnproject.dto.request.auth.LogoutRequest;
+import com.utc.ppnproject.dto.response.auth.AuthenticationResponse;
 import com.utc.ppnproject.service.AuthenticationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

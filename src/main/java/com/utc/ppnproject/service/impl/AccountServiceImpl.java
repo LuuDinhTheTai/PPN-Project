@@ -1,8 +1,8 @@
 package com.utc.ppnproject.service.impl;
 
 import com.utc.ppnproject.constant.Constant;
-import com.utc.ppnproject.dto.request.RegisterRequest;
-import com.utc.ppnproject.dto.response.AccountResponse;
+import com.utc.ppnproject.dto.request.auth.RegisterRequest;
+import com.utc.ppnproject.dto.response.auth.AccountResponse;
 import com.utc.ppnproject.entity.Account;
 import com.utc.ppnproject.entity.Role;
 import com.utc.ppnproject.exception.ApiException;

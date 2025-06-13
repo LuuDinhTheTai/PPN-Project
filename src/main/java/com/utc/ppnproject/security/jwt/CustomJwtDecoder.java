@@ -2,7 +2,7 @@ package com.utc.ppnproject.security.jwt;
 
 
 import com.nimbusds.jose.JOSEException;
-import com.utc.ppnproject.dto.request.IntrospectRequest;
+import com.utc.ppnproject.dto.request.auth.IntrospectRequest;
 import com.utc.ppnproject.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

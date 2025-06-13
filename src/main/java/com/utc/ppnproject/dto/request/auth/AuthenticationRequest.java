@@ -1,4 +1,4 @@
-package com.utc.ppnproject.dto.request;
+package com.utc.ppnproject.dto.request.auth;
 
 import com.utc.ppnproject.exception.ApiException;
 import com.utc.ppnproject.exception.ErrorCode;

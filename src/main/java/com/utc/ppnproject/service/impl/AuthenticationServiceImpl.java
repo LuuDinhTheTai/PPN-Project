@@ -1,9 +1,12 @@
 package com.utc.ppnproject.service.impl;
 
 import com.nimbusds.jose.JOSEException;
-import com.utc.ppnproject.dto.request.*;
-import com.utc.ppnproject.dto.response.AuthenticationResponse;
-import com.utc.ppnproject.dto.response.IntrospectResponse;
+import com.utc.ppnproject.dto.request.auth.AuthenticationRequest;
+import com.utc.ppnproject.dto.request.auth.IntrospectRequest;
+import com.utc.ppnproject.dto.request.auth.LogoutRequest;
+import com.utc.ppnproject.dto.request.auth.RefreshRequest;
+import com.utc.ppnproject.dto.response.auth.AuthenticationResponse;
+import com.utc.ppnproject.dto.response.auth.IntrospectResponse;
 import com.utc.ppnproject.entity.InvalidatedToken;
 import com.utc.ppnproject.exception.ApiException;
 import com.utc.ppnproject.exception.ErrorCode;

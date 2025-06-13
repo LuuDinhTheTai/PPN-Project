@@ -1,7 +1,7 @@
 package com.utc.ppnproject.service;
 
-import com.utc.ppnproject.dto.request.RegisterRequest;
-import com.utc.ppnproject.dto.response.AccountResponse;
+import com.utc.ppnproject.dto.request.auth.RegisterRequest;
+import com.utc.ppnproject.dto.response.auth.AccountResponse;
 import com.utc.ppnproject.entity.Account;
 import com.utc.ppnproject.service.base.BaseService;
 

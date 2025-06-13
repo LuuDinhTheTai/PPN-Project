@@ -1,4 +1,4 @@
-package com.utc.ppnproject.dto.response;
+package com.utc.ppnproject.dto.response.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

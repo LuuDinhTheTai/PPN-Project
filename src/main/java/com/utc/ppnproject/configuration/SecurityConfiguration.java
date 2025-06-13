@@ -34,15 +34,26 @@ public class SecurityConfiguration {
   public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
     httpSecurity
             .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                                                                    .requestMatchers(HttpMethod.GET, "/accounts/{id}").permitAll()
+                                                                    .requestMatchers(HttpMethod.GET,
+                                                                            "/accounts/{id}",
+                                                                            "/products/",
+                                                                            "/products/s").permitAll()
                                                                     .requestMatchers(HttpMethod.POST,
                                                                             "/accounts/register",
                                                                             "/auth/login",
                                                                             "/auth/logout").permitAll()
                                                                     
-                                                                    .requestMatchers(HttpMethod.GET, "/role-based/admin").hasRole(Constant.ROLE_ADMIN)
+                                                                    .requestMatchers(HttpMethod.GET,
+                                                                            "/role-based/admin").hasRole(Constant.ROLE_ADMIN)
+                                                                    .requestMatchers(HttpMethod.POST,
+                                                                            "/products/").hasRole(Constant.ROLE_ADMIN)
+                                                                    .requestMatchers(HttpMethod.PUT,
+                                                                            "/products/").hasRole(Constant.ROLE_ADMIN)
+                                                                    .requestMatchers(HttpMethod.DELETE,
+                                                                            "/products/").hasRole(Constant.ROLE_ADMIN)
                                                                     
-                                                                    .requestMatchers(HttpMethod.GET, "/role-based/user").hasRole(Constant.ROLE_USER)
+                                                                    .requestMatchers(HttpMethod.GET,
+                                                                            "/role-based/user").hasRole(Constant.ROLE_USER)
                                                                     
                                                                     .anyRequest().authenticated())
             

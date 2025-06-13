@@ -1,4 +1,4 @@
-package com.utc.ppnproject.dto.request;
+package com.utc.ppnproject.dto.request.auth;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
