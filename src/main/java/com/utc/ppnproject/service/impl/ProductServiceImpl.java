@@ -35,7 +35,12 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
   
   @Override
   public ProductResponse findById(String id) {
-    return ProductResponse.from(find(id));
+    Product product = find(id);
+    if (product == null) {
+      throw new ApiException(ErrorCode.PRODUCT_NOT_FOUND);
+    }
+    
+    return ProductResponse.from(product);
   }
   
   @Override
@@ -49,6 +54,4 @@ public class ProductServiceImpl extends BaseServiceImpl<Product, String> impleme
     
     return ProductResponse.from(update(exits));
   }
-  
-  
 }
